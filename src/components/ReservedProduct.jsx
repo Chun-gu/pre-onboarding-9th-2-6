@@ -24,7 +24,6 @@ export default function ReservedProduct({ product }) {
   const quantity = reservedProducts.filter(
     (item) => item.idx === product.idx,
   )[0].quantity;
-  console.log(11, quantity);
   return (
     <Tr key={product.idx}>
       <Td>

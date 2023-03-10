@@ -13,7 +13,6 @@ const reservationSlice = createSlice({
       const existingProduct = state.reservedProducts.find(
         (product) => product.idx === newProduct.idx,
       );
-      console.log(11111, existingProduct);
       if (!existingProduct) {
         state.reservedProducts.push({
           ...newProduct,
