@@ -1,10 +1,7 @@
 import { useCallback } from 'react';
 
-import { Link } from 'react-router-dom';
-
 import {
   Flex,
-  Circle,
   Box,
   Image,
   Badge,
@@ -14,16 +11,20 @@ import {
   Tooltip,
   GridItem,
   Text,
-  useDisclosure,
 } from '@chakra-ui/react';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useDispatch } from 'react-redux';
 
 import { useModal } from '../../hooks';
+import { reservationActions } from '../../store/slices/reservationSlice';
 
 export default function ProductCard({ product }) {
-  console.log(product);
-  const { isOpen, onClose, onOpen } = useDisclosure();
   const { openModal } = useModal();
+  const dispatch = useDispatch();
+  const AddToCart = (e) => {
+    e.stopPropagation();
+    dispatch(reservationActions.addToCart(product));
+  };
 
   const onClickCard = useCallback(() => {
     openModal('ProductDetail', product);
@@ -79,7 +80,7 @@ export default function ProductCard({ product }) {
                 placement={'top'}
                 color={'gray.800'}
                 fontSize={'1.2em'}>
-                <chakra.a href={'#'} display={'flex'}>
+                <chakra.a href={'#'} display={'flex'} onClick={AddToCart}>
                   <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
                 </chakra.a>
               </Tooltip>

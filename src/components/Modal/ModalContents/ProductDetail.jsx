@@ -1,19 +1,13 @@
-import { useCallback } from 'react';
-
 import {
   Badge,
   Box,
-  Button,
   Image,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   Text,
 } from '@chakra-ui/react';
-
-import { useProduct } from '../../../hooks';
 
 export default function ProductDetail({ content }) {
   const {
@@ -21,24 +15,10 @@ export default function ProductDetail({ content }) {
     name,
     price,
     mainImage,
-    isReserved,
     description,
     spaceCategory,
     maximumPurchases,
-    registrationDate,
   } = content;
-
-  const [, { makeReservation, cancelReservation }] = useProduct();
-
-  const onClickReserve = useCallback(
-    () => makeReservation(idx),
-    [idx, makeReservation],
-  );
-
-  const onClickCancel = useCallback(
-    () => cancelReservation(idx),
-    [idx, cancelReservation],
-  );
 
   return (
     <ModalContent size="2xl">
@@ -63,19 +43,6 @@ export default function ProductDetail({ content }) {
           </Box>
         </Box>
       </ModalBody>
-
-      <ModalFooter display="flex" justifyContent="space-between">
-        <Text>상품 등록일: {registrationDate}</Text>
-        {isReserved ? (
-          <Button colorScheme="red" onClick={onClickCancel}>
-            취소
-          </Button>
-        ) : (
-          <Button colorScheme="green" onClick={onClickReserve}>
-            예약
-          </Button>
-        )}
-      </ModalFooter>
     </ModalContent>
   );
 }
