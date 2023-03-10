@@ -13,18 +13,25 @@ import {
 } from '@chakra-ui/react';
 import { BsFillSunFill, BsFillMoonFill } from 'react-icons/bs';
 import { FiShoppingCart } from 'react-icons/fi';
+import { useSelector } from 'react-redux';
 
 export default function Nav() {
   const navigate = useNavigate();
-  // toggleColorMode는 colorMode를 dark나 light로 변경해줌
+  const reservedProducts = useSelector(
+    (state) => state.reserve.reservedProducts,
+  );
+  const totalAmount = reservedProducts.reduce((acc, product) => {
+    return acc + (product.quantity ? product.quantity : 1);
+  }, 0);
   const { colorMode, toggleColorMode } = useColorMode();
-  // useColorModeValue(lightModeValue, darkModeValue)
   const bg = useColorModeValue('gray.200', 'gray.900');
   return (
     <div>
       <Box bg={bg} px={4}>
         <Flex h={16} alignItems="center" justifyContent="space-between">
-          <Box cursor="pointer">Like A Local</Box>
+          <Box onClick={() => navigate('/main')} cursor="pointer">
+            Like A Local
+          </Box>
 
           <Flex alignItems="center">
             <Stack direction="row" spacing={7}>
@@ -51,7 +58,7 @@ export default function Nav() {
                     display="flex"
                     alignItems="center"
                     justifyContent="center">
-                    15
+                    {totalAmount}
                   </Text>
                 </Box>
               </Center>
