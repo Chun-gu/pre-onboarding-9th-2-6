@@ -80,7 +80,7 @@ export default function ProductCard({ product }) {
                 placement={'top'}
                 color={'gray.800'}
                 fontSize={'1.2em'}>
-                <chakra.a href={'#'} display={'flex'} onClick={AddToCart}>
+                <chakra.a cursor="pointer" display={'flex'} onClick={AddToCart}>
                   <Icon as={FiShoppingCart} h={7} w={7} alignSelf={'center'} />
                 </chakra.a>
               </Tooltip>
