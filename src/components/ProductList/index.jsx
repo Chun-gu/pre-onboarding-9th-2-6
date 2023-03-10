@@ -4,7 +4,7 @@ import ProductCard from '../ProductCard';
 
 export default function ProductList({ products }) {
   return (
-    <Grid templateColumns="repeat(4, 1fr)">
+    <Grid templateColumns="repeat(2, 1fr)">
       {products.map((product) => (
         <ProductCard key={product.idx} product={product} />
       ))}

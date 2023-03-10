@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
+import { Layout } from '../components';
 import { Modal, ProductFilter, ProductList } from '../components';
 import { fetchProductData } from '../store/slices/productSlice';
 
@@ -39,10 +40,10 @@ export default function MainPage() {
   }, [dispatch, products.length]);
 
   return (
-    <>
+    <Layout>
       <ProductFilter />
       <ProductList products={filteredProductList}></ProductList>
       <Modal />
-    </>
+    </Layout>
   );
 }
